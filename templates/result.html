@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Results</title>
+</head>
+
+<body>
+    <div class="results">
+        {% if prediction==1 %}
+        <h1>Prediction: <span class='danger'>Oops! You have Chances of Heart Disease.</span></h1>
+
+        {% elif prediction==0 %}
+        <h1>Prediction: <span class='safe'>Great! You DON'T chances have Heart Disease.</span></h1>
+
+        {% endif %}
+    </div>
+</body>
+
+</html>

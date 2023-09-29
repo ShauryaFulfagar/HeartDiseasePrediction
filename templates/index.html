@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heart Disease Predictor</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons8-heart-beat-32.ico') }}" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="topBar" data-aos="fade-right" data-aos-duration="1000">
+            <div class="img">
+                <img
+                    src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/null/external-heart-beat-world-cancer-awareness-flatart-icons-flat-flatarticons.png" />
+            </div>
+            <div>
+                <h1 class="topText">Heart Disease Predictor</h1>
+                <p>
+                    This is a WebApp ML prototype made using sklearn and pandas and
+                    Flask in python
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <div class="formContainer">
+        <form action= '/predict'>
+            <input name="age" placeholder="Age" class="inputBox" type="number" required /><br />
+            <input name="sex" placeholder="Gender" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = Female <br />
+                1 = male
+            </p>
+            <input name="cp" placeholder="Chest Pain Type" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = Typical Angina<br />1 = Atypical Angina<br />2 = Non-Anginal<br />3
+                = Asymtomatic
+            </p>
+
+            <input name="trestbps" placeholder="RestingBloodPressure" class="inputBox" type="number" required /><br />
+            <p class="infoText">Number between 94-200</p>
+
+            <input name="chol" placeholder="Serum Cholestrol" class="inputBox" type="number" required /><br />
+            <p class="infoText">Number between 126-564</p>
+
+            <input name="fbs" placeholder="FastingBloodSugar" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = less than 120mg/dl <br />
+                1 = more than 120mg/dl
+            </p>
+
+            <input name="restecg" placeholder="Resting ECG result" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = Normal <br />
+                1 = Having ST-T wave abnormality <br />
+                2 = Probable or definite left ventricular hypertrophy
+            </p>
+
+            <input name="thalach" placeholder="Max Heart Rate" class="inputBox" type="number" required /><br />
+            <p class="infoText">Number between 71-202</p>
+
+            <input name="exang" placeholder="Exercise-induced Angina" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = Yes <br />
+                1 = No
+            </p>
+
+            <input name="oldpeak" placeholder="ST Depression" class="inputBox" type="number" required /><br />
+            <p class="infoText">Number between 0.6 - 2</p>
+
+            <input name="slope" placeholder="Slope of the peak exercise ST segment" class="inputBox" type="number"
+                required /><br />
+            <p class="infoText">
+                0 = Unsloping <br />
+                1 = Flat <br />
+                2 = Downsloping
+            </p>
+
+            <input name="ca" placeholder="Number of Major vessels" class="inputBox" type="number" required /><br />
+            <p class="infoText">Usually between 0 - 4</p>
+
+            <input name="thal" placeholder="Thalassemia" class="inputBox" type="number" required /><br />
+            <p class="infoText">
+                0 = Normal<br />1 = Fixed defect<br />2 = Reversible defect
+            </p>
+            <button type="submit" class="btn" value="predict">PREDICT</button>
+
+            <audio id="beep" preload="auto">
+                <source src="{{ url_for('static', filename='hover.mp3') }}" controls />
+            </audio>
+            <script>
+                var beepOne = $("#beep")[0];
+                $(".btn").mouseenter(function () {
+                    beepOne.pause();
+                    beepOne.play();
+                });
+            </script>
+        </form>
+    </div>
+    <footer>
+        <p class="footerText">
+            How it works??- It Uses your health checkup data, passes it through an
+            AI model and find out the probability of you having a heart disease
+        </p>
+    </footer>
+</body>
+
+</html>
